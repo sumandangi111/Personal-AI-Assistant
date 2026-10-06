@@ -1,0 +1,29 @@
+# Environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+backend/.env
+
+# Google OAuth credentials
+credentials.json
+token.json
+gmail_token.json
+backend/credentials.json
+backend/token.json
+backend/gmail_token.json
+
+# Database
+*.db
+backend/*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

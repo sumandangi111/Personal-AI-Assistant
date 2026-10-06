@@ -1,0 +1,4539 @@
+/* ============================================================
+   GLOBAL APP
+   ============================================================ */
+
+#root {
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   AUTH PAGE
+   ============================================================ */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(30, 123, 245, 0.12),
+            transparent 35%
+        ),
+        #0f172a;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 38px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.auth-logo {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #1e7bf5;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(30, 123, 245, 0.25);
+}
+
+.auth-card h1 {
+    color: #f8fafc;
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: #94a3b8;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 14px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.auth-form input::placeholder {
+    color: #64748b;
+}
+
+.auth-form input:focus {
+    border-color: #1e7bf5;
+    box-shadow: 0 0 0 3px rgba(30, 123, 245, 0.12);
+}
+
+.auth-form button[type="submit"] {
+    margin-top: 6px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #1e7bf5;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.auth-form button[type="submit"]:hover {
+    background: #1769d2;
+}
+
+.auth-form button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.auth-form button[type="submit"]:disabled {
+    opacity: 0.6;
+}
+
+.auth-error {
+    padding: 11px 12px;
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    font-size: 13px;
+    text-align: left;
+}
+
+.auth-switch {
+    margin-top: 22px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.auth-switch button {
+    background: transparent;
+    color: #60a5fa;
+    font-weight: 600;
+    padding: 0;
+}
+
+.auth-switch button:hover {
+    color: #93c5fd;
+}
+
+/* ============================================================
+   MAIN APP SHELL
+   ============================================================ */
+
+.app-shell {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns:
+        60px
+        280px
+        minmax(420px, 1fr)
+        320px;
+    overflow: hidden;
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    background: #0b1220;
+    border-right: 1px solid #1e293b;
+}
+
+.sidebar-logo {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #1e7bf5;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.sidebar-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    font-size: 17px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.sidebar-icon:hover {
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+.sidebar-icon.active {
+    background: rgba(30, 123, 245, 0.15);
+    color: #60a5fa;
+}
+
+/* ============================================================
+   LEFT PANEL
+   ============================================================ */
+
+.left-panel {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #111827;
+    border-right: 1px solid #1e293b;
+}
+
+.panel-header {
+    padding: 24px 20px 18px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.panel-header h2 {
+    color: #f8fafc;
+    font-size: 18px;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.panel-header p {
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ============================================================
+   SECTION CARDS
+   ============================================================ */
+
+.section-card {
+    padding: 18px 20px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.section-title-row h3 {
+    color: #e2e8f0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.section-title-row p {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ============================================================
+   MEMORY
+   ============================================================ */
+
+.add-memory-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: rgba(30, 123, 245, 0.12);
+    color: #60a5fa;
+    font-size: 19px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.add-memory-button:hover {
+    background: rgba(30, 123, 245, 0.22);
+    color: #93c5fd;
+}
+
+.memory-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 9px;
+    background: #172033;
+    border: 1px solid transparent;
+}
+
+.fact:hover {
+    border-color: #334155;
+}
+
+.fact-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fact-content strong {
+    color: #cbd5e1;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.fact-content span {
+    color: #94a3b8;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.memory-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.memory-actions button {
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 14px;
+}
+
+.memory-edit {
+    color: #60a5fa;
+}
+
+.memory-edit:hover {
+    background: rgba(96, 165, 250, 0.1);
+}
+
+.memory-delete {
+    color: #f87171;
+}
+
+.memory-delete:hover {
+    background: rgba(248, 113, 113, 0.1);
+}
+
+.memory-empty {
+    padding: 13px;
+    border-radius: 8px;
+    background: #172033;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.memory-loading {
+    color: #64748b;
+    font-size: 12px;
+    padding: 10px 0;
+}
+
+/* ============================================================
+   MEMORY FORM
+   ============================================================ */
+
+.memory-form,
+.memory-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 12px;
+    padding: 13px;
+    border-radius: 9px;
+    background: #172033;
+    border: 1px solid #334155;
+}
+
+.memory-form-title {
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.memory-form input,
+.memory-edit input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #f8fafc;
+    font-size: 12px;
+}
+
+.memory-form input::placeholder,
+.memory-edit input::placeholder {
+    color: #64748b;
+}
+
+.memory-form input:focus,
+.memory-edit input:focus {
+    border-color: #1e7bf5;
+}
+
+.memory-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-top: 3px;
+}
+
+.memory-form-actions button {
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.memory-form-actions button:first-child {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+.memory-form-actions button:first-child:hover {
+    background: #475569;
+}
+
+.memory-form-actions button:last-child {
+    background: #1e7bf5;
+    color: #ffffff;
+}
+
+.memory-form-actions button:last-child:hover {
+    background: #1769d2;
+}
+
+.memory-form-actions button:disabled {
+    opacity: 0.55;
+}
+
+/* ============================================================
+   CONNECTED APPS
+   ============================================================ */
+
+.connected-app {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.connected-app:last-child {
+    border-bottom: none;
+}
+
+.app-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #1e293b;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.app-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.app-info strong {
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.app-info span {
+    color: #64748b;
+    font-size: 11px;
+}
+
+.connection-status {
+    color: #22c55e;
+    font-size: 12px;
+}
+
+/* ============================================================
+   LEFT FOOTER
+   ============================================================ */
+
+.left-panel-footer {
+    margin-top: auto;
+    padding: 14px 16px;
+    border-top: 1px solid #1e293b;
+}
+
+.user-footer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.user-avatar {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #334155;
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.user-footer-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-footer-info strong {
+    color: #e2e8f0;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-footer-info span {
+    color: #94a3b8;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.small-logout {
+    flex-shrink: 0;
+    width: auto;
+    height: auto;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.small-logout:hover {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+/* ============================================================
+   CHAT PANEL
+   ============================================================ */
+
+.chat-panel {
+    height: 100vh;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #0f172a;
+}
+
+.chat-header {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.chat-header h2 {
+    color: #f8fafc;
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.chat-header p {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.new-chat-button {
+    padding: 9px 14px;
+    border-radius: 8px;
+    background: #1e7bf5;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.new-chat-button:hover {
+    background: #1769d2;
+}
+
+/* ============================================================
+   CHAT MESSAGES
+   ============================================================ */
+
+.chat-messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 28px 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.message-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    max-width: 85%;
+}
+
+.assistant-row {
+    align-self: flex-start;
+}
+
+.user-row {
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+.ai-avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #1e293b;
+    color: #60a5fa;
+    font-size: 15px;
+}
+
+.message-bubble {
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.assistant-message {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-top-left-radius: 4px;
+}
+
+.user-message {
+    background: #1e7bf5;
+    color: #ffffff;
+    border-top-right-radius: 4px;
+}
+
+/* ============================================================
+   CHAT BOTTOM
+   ============================================================ */
+
+.chat-bottom {
+    padding: 10px 24px 20px;
+    border-top: 1px solid #1e293b;
+}
+
+.remembered-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 9px;
+    padding: 7px 10px;
+    border-radius: 20px;
+    background: rgba(30, 123, 245, 0.08);
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.remembered-chip:first-letter {
+    color: #60a5fa;
+}
+
+.chat-input-area {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 9px;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    background: #111827;
+    transition: border-color 0.2s ease;
+}
+
+.chat-input-area:focus-within {
+    border-color: #1e7bf5;
+}
+
+.chat-input-area input {
+    min-width: 0;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f8fafc;
+    font-size: 14px;
+}
+
+.chat-input-area input::placeholder {
+    color: #64748b;
+}
+
+.input-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.input-icon:hover {
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+.send-button {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #1e7bf5;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.send-button:hover {
+    background: #1769d2;
+}
+
+.send-button:disabled {
+    opacity: 0.35;
+}
+
+/* ============================================================
+   RIGHT PANEL
+   ============================================================ */
+
+.right-panel {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 18px;
+    background: #111827;
+    border-left: 1px solid #1e293b;
+}
+
+.right-panel-header {
+    margin-bottom: 18px;
+}
+
+.right-panel-header h2 {
+    color: #f8fafc;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.right-panel-header p {
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+/* ============================================================
+   DASHBOARD CARDS
+   ============================================================ */
+
+.dashboard-card {
+    margin-bottom: 12px;
+    padding: 16px;
+    border-radius: 13px;
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.dashboard-card:last-child {
+    margin-bottom: 0;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 13px;
+}
+
+.card-header h3 {
+    color: #e2e8f0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card-header p {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ============================================================
+   TODAY'S FOCUS
+   ============================================================ */
+
+.focus-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.focus-check {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    font-size: 11px;
+}
+
+/* ============================================================
+   GMAIL
+   ============================================================ */
+
+.gmail-card {
+    min-height: 220px;
+}
+
+.gmail-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8px 4px 4px;
+}
+
+.gmail-confirmation-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: rgba(30, 123, 245, 0.12);
+    color: #60a5fa;
+    font-size: 19px;
+}
+
+.gmail-confirmation-title {
+    color: #e2e8f0;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.gmail-confirmation-text {
+    max-width: 230px;
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.gmail-action-status {
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: rgba(234, 179, 8, 0.1);
+    color: #facc15;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.gmail-action-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.gmail-action-buttons button {
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.gmail-action-buttons button:active {
+    transform: scale(0.98);
+}
+
+.gmail-confirm-button {
+    background: #1e7bf5;
+    color: #ffffff;
+}
+
+.gmail-confirm-button:hover {
+    background: #1769d2;
+}
+
+.gmail-rewrite-button {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+.gmail-rewrite-button:hover {
+    background: #475569;
+}
+
+.gmail-cancel-button {
+    background: transparent;
+    color: #f87171;
+    border: 1px solid #334155;
+}
+
+.gmail-cancel-button:hover {
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.gmail-action-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gmail-ready {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 8px;
+}
+
+.gmail-ready-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #64748b;
+    font-size: 17px;
+}
+
+.gmail-ready strong {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.gmail-ready span {
+    max-width: 220px;
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.gmail-action-message {
+    margin-top: 10px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.status-dot {
+    color: #22c55e;
+    font-size: 11px;
+}
+
+/* ============================================================
+   CALENDAR
+   ============================================================ */
+
+.calendar-event {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px;
+    border-radius: 9px;
+    background: #0f172a;
+}
+
+.calendar-time {
+    color: #60a5fa;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calendar-event-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-event-info strong {
+    color: #cbd5e1;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar-event-info span {
+    color: #64748b;
+    font-size: 10px;
+}
+
+.calendar-dropdown {
+    width: 100%;
+}
+
+.calendar-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    background: #0f172a;
+    color: #cbd5e1;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.calendar-dropdown select:hover {
+    border-color: #475569;
+}
+
+.calendar-dropdown select:focus {
+    border-color: #1e7bf5;
+}
+
+.calendar-selected-event {
+    margin-top: 10px;
+    padding-top: 2px;
+}
+
+.calendar-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    background: #0f172a;
+}
+
+.calendar-detail span {
+    color: #64748b;
+    font-size: 10px;
+}
+
+.calendar-detail strong {
+    color: #cbd5e1;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1250px) {
+    .app-shell {
+        grid-template-columns:
+            60px
+            250px
+            minmax(380px, 1fr)
+            290px;
+    }
+
+    .chat-messages {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .app-shell {
+        grid-template-columns:
+            60px
+            230px
+            minmax(350px, 1fr);
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .app-shell {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .left-panel {
+        display: none;
+    }
+
+    .chat-header {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .chat-bottom {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .chat-messages {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    .sidebar {
+        display: none;
+    }
+
+    .app-shell {
+        display: block;
+    }
+
+    .chat-panel {
+        width: 100%;
+    }
+
+    .chat-header {
+        min-height: 68px;
+    }
+
+    .chat-header h2 {
+        font-size: 15px;
+    }
+
+    .chat-header p {
+        display: none;
+    }
+
+    .new-chat-button {
+        padding: 8px 11px;
+        font-size: 11px;
+    }
+
+    .message-row {
+        max-width: 94%;
+    }
+
+    .message-bubble {
+        font-size: 13px;
+    }
+
+    .chat-messages {
+        padding-top: 18px;
+    }
+
+    .auth-card {
+        padding: 28px 22px;
+    }
+}
+
+/* ============================================================
+   MEMORY DROPDOWN
+   ============================================================ */
+
+.memory-dropdown {
+    width: 100%;
+}
+
+.memory-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    background: #0f172a;
+    color: #cbd5e1;
+    font-size: 11px;
+    outline: none;
+    cursor: pointer;
+}
+
+.memory-dropdown select:hover {
+    border-color: #475569;
+}
+
+.memory-dropdown select:focus {
+    border-color: #1e7bf5;
+}
+
+.selected-memory {
+    margin-top: 10px;
+}
+
+.selected-memory-content {
+    position: relative;
+    padding: 11px;
+    border-radius: 7px;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+}
+
+.selected-memory-content strong {
+    display: block;
+    color: #e2e8f0;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.selected-memory-content span {
+    display: block;
+    margin-top: 5px;
+    color: #94a3b8;
+    font-size: 10px;
+    line-height: 1.55;
+    padding-right: 35px;
+}
+
+.selected-memory-actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 4px;
+}
+
+/* ============================================================
+   MEETING REMINDER POPUP
+   ============================================================ */
+
+.meeting-reminder-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: 70px;
+
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.meeting-reminder-popup {
+    width: 420px;
+    max-width: calc(100vw - 32px);
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.20);
+
+    overflow: hidden;
+
+    animation: meetingReminderSlideDown 0.25s ease-out;
+}
+
+@keyframes meetingReminderSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.meeting-reminder-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 20px 20px 16px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.meeting-reminder-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #64748b;
+}
+
+.meeting-reminder-header h3 {
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #0f172a;
+}
+
+.meeting-reminder-close {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.meeting-reminder-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.meeting-reminder-body {
+    padding: 20px;
+}
+
+.meeting-reminder-time {
+    margin-bottom: 10px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.meeting-reminder-body p {
+    margin: 0 0 8px;
+
+    font-size: 14px;
+    color: #475569;
+}
+
+.meeting-reminder-body p strong {
+    color: #0f172a;
+}
+
+.meeting-reminder-date {
+    margin-top: 8px;
+
+    font-size: 13px;
+    color: #64748b;
+}
+
+.meeting-reminder-location {
+    margin-top: 12px;
+    padding: 9px 11px;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    font-size: 12px;
+    color: #475569;
+}
+
+.meeting-reminder-dismiss {
+    width: calc(100% - 40px);
+
+    margin: 0 20px 20px;
+
+    padding: 11px 16px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #0f172a;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.meeting-reminder-dismiss:hover {
+    background: #1e293b;
+}
+
+.app-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* ============================================================
+   FINAL RESPONSIVE LAYOUT
+   ============================================================ */
+
+/* ============================================================
+   1. LARGE DESKTOP
+   1200px and above
+
+   Sidebar | About You | Chat | Gmail / Calendar / Memory
+   ============================================================ */
+
+.app-shell {
+    display: grid;
+
+    grid-template-columns:
+        64px
+        minmax(260px, 300px)
+        minmax(420px, 1fr)
+        minmax(280px, 320px);
+
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   2. LAPTOP
+   900px - 1199px
+
+   Sidebar | About You | Chat
+   --------------------------------
+   Gmail / Calendar / Memory
+
+   Nothing is removed.
+   Right panel moves below the main area.
+   ============================================================ */
+
+@media (min-width: 900px) and (max-width: 1199px) {
+
+    .app-shell {
+        display: grid;
+
+        grid-template-columns:
+            58px
+            235px
+            minmax(0, 1fr);
+
+        grid-template-rows:
+            minmax(650px, 1fr)
+            auto;
+
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+    /* Sidebar */
+
+    .sidebar {
+        grid-column: 1;
+        grid-row: 1;
+
+        width: 58px;
+        height: 100vh;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+    }
+
+
+    /* About You */
+
+    .left-panel {
+        grid-column: 2;
+        grid-row: 1;
+
+        display: flex;
+
+        width: 100%;
+        min-width: 0;
+        height: 100vh;
+
+        overflow-y: auto;
+
+        border-right: 1px solid #1e293b;
+    }
+
+
+    /* Chat */
+
+    .chat-panel {
+        grid-column: 3;
+        grid-row: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        min-width: 0;
+        height: 100vh;
+    }
+
+
+    /* Right panel */
+
+    .right-panel {
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 14px;
+
+        width: 100%;
+        height: auto;
+
+        padding: 18px;
+
+        overflow: visible;
+
+        border-left: none;
+        border-top: 1px solid #1e293b;
+    }
+
+
+    .right-panel > * {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .gmail-card,
+    .calendar-card,
+    .memory-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* Chat sizing */
+
+    .chat-header {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .chat-messages {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .chat-bottom {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .chat-input-area {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .chat-input-area input {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+/* ============================================================
+   3. TABLET
+   600px - 899px
+
+   Sidebar
+   About You
+   Chat
+   Gmail / Calendar / Memory
+
+   Everything becomes vertically arranged.
+   ============================================================ */
+
+@media (min-width: 600px) and (max-width: 899px) {
+
+    .app-shell {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+    /* --------------------------------------------------------
+       SIDEBAR
+       -------------------------------------------------------- */
+
+    .sidebar {
+        order: 1;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 8px 16px;
+
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
+
+
+    /* --------------------------------------------------------
+       ABOUT YOU
+       -------------------------------------------------------- */
+
+    .left-panel {
+        order: 2;
+
+        display: flex;
+
+        width: 100%;
+        height: auto;
+        min-height: 0;
+
+        overflow: visible;
+
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
+
+
+    /* --------------------------------------------------------
+       CHAT
+       -------------------------------------------------------- */
+
+    .chat-panel {
+        order: 3;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: 680px;
+        min-height: 680px;
+
+        min-width: 0;
+    }
+
+
+    .chat-header {
+        width: 100%;
+
+        padding: 14px 18px;
+    }
+
+
+    .chat-messages {
+        width: 100%;
+
+        flex: 1;
+        min-height: 0;
+
+        padding: 18px;
+
+        overflow-y: auto;
+    }
+
+
+    .chat-bottom {
+        width: 100%;
+
+        flex-shrink: 0;
+
+        padding: 10px 16px 16px;
+    }
+
+
+    .chat-input-area {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .chat-input-area input {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* --------------------------------------------------------
+       RIGHT PANEL
+       -------------------------------------------------------- */
+
+    .right-panel {
+        order: 4;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+
+        width: 100%;
+        height: auto;
+
+        padding: 18px;
+
+        overflow: visible;
+
+        border-left: none;
+        border-top: 1px solid #1e293b;
+    }
+
+
+    .right-panel > * {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .gmail-card,
+    .calendar-card,
+    .memory-card {
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   4. MOBILE
+   0px - 599px
+
+   Sidebar
+   About You
+   Chat
+   Gmail
+   Calendar
+   Memory
+
+   Everything remains accessible by scrolling.
+   ============================================================ */
+
+@media (max-width: 599px) {
+
+    html,
+    body,
+    #root {
+        width: 100%;
+        min-width: 0;
+
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* --------------------------------------------------------
+       MAIN APP
+       -------------------------------------------------------- */
+
+    .app-shell {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        min-width: 0;
+
+        height: auto;
+        min-height: 100vh;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+    /* --------------------------------------------------------
+       SIDEBAR
+       -------------------------------------------------------- */
+
+    .sidebar {
+        order: 1;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 200;
+
+        width: 100%;
+        height: 54px;
+        min-height: 54px;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 7px 12px;
+
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
+
+
+    /* --------------------------------------------------------
+       ABOUT YOU
+       -------------------------------------------------------- */
+
+    .left-panel {
+        order: 2;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: auto;
+        min-height: 0;
+
+        overflow: visible;
+
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
+
+
+    /* --------------------------------------------------------
+       CHAT
+       -------------------------------------------------------- */
+
+    .chat-panel {
+        order: 3;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        min-width: 0;
+
+        height: 650px;
+        min-height: 650px;
+    }
+
+
+    /* Header */
+
+    .chat-header {
+        width: 100%;
+
+        min-height: 64px;
+
+        padding: 12px 14px;
+
+        gap: 8px;
+    }
+
+
+    .chat-header h2 {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+
+    .chat-header p {
+        display: none;
+    }
+
+
+    .new-chat-button {
+        flex-shrink: 0;
+
+        white-space: nowrap;
+
+        padding: 8px 10px;
+
+        font-size: 11px;
+    }
+
+
+    /* Messages */
+
+    .chat-messages {
+        width: 100%;
+
+        flex: 1;
+        min-height: 0;
+
+        padding: 16px 12px;
+
+        overflow-y: auto;
+    }
+
+
+    .message-row {
+        max-width: 96%;
+    }
+
+
+    .message-bubble {
+        max-width: calc(100vw - 64px);
+
+        font-size: 13px;
+        line-height: 1.55;
+
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+
+
+    .ai-avatar {
+        flex-shrink: 0;
+    }
+
+
+    /* Bottom */
+
+    .chat-bottom {
+        width: 100%;
+
+        flex-shrink: 0;
+
+        padding: 8px 10px 12px;
+    }
+
+
+    /* Remembered chip */
+
+    .remembered-chip {
+        max-width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .remembered-chip span {
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+    }
+
+
+    /* Input */
+
+    .chat-input-area {
+        width: 100%;
+        min-width: 0;
+
+        padding: 7px 8px;
+    }
+
+
+    .chat-input-area input {
+        width: 100%;
+        min-width: 0;
+
+        font-size: 13px;
+    }
+
+
+    .input-icon,
+    .send-button {
+        flex-shrink: 0;
+    }
+
+
+    /* --------------------------------------------------------
+       RIGHT PANEL
+       -------------------------------------------------------- */
+
+    .right-panel {
+        order: 4;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: auto;
+        min-height: 0;
+
+        padding: 14px 12px;
+
+        overflow: visible;
+
+        border-left: none;
+        border-top: 1px solid #1e293b;
+    }
+
+
+    .right-panel > * {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .gmail-card,
+    .calendar-card,
+    .memory-card {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+/* ============================================================
+   5. VERY SMALL MOBILE
+   400px and below
+
+   Same sections, tighter spacing.
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    /* Sidebar */
+
+    .sidebar {
+        height: 50px;
+        min-height: 50px;
+
+        padding: 6px 9px;
+    }
+
+
+    /* About You */
+
+    .left-panel {
+        width: 100%;
+    }
+
+
+    /* Chat */
+
+    .chat-panel {
+        height: 600px;
+        min-height: 600px;
+    }
+
+
+    .chat-header {
+        min-height: 58px;
+
+        padding: 10px 11px;
+    }
+
+
+    .chat-header h2 {
+        font-size: 15px;
+    }
+
+
+    .new-chat-button {
+        padding: 7px 8px;
+
+        font-size: 10px;
+    }
+
+
+    .chat-messages {
+        padding: 12px 9px;
+    }
+
+
+    .message-row {
+        max-width: 98%;
+    }
+
+
+    .message-bubble {
+        max-width: calc(100vw - 58px);
+
+        padding: 9px 11px;
+
+        font-size: 12px;
+    }
+
+
+    .chat-bottom {
+        padding: 7px 8px 10px;
+    }
+
+
+    .chat-input-area {
+        padding: 6px 7px;
+
+        border-radius: 10px;
+    }
+
+
+    .chat-input-area input {
+        font-size: 12px;
+    }
+
+
+    /* Right panel */
+
+    .right-panel {
+        padding: 12px 9px;
+    }
+}
+
+
+
+
+
+
+/* ============================================================
+   USER DASHBOARD
+   ============================================================ */
+
+.user-dashboard {
+    min-height: 100vh;
+    width: 100%;
+    background: #0f172a;
+    color: #f8fafc;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.user-dashboard-header {
+    width: 100%;
+    min-height: 78px;
+
+    padding: 15px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: #0b1220;
+    border-bottom: 1px solid #1e293b;
+}
+
+
+/* ============================================================
+   TOP LEFT BRAND
+   ============================================================ */
+
+.user-dashboard-header > div:first-child {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+/* ✦ LOGO */
+
+.user-dashboard-header > div:first-child::before {
+    content: "✦";
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #1e7bf5;
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    box-shadow:
+        0 8px 22px rgba(30, 123, 245, 0.22);
+}
+
+
+/* TITLE */
+
+.user-dashboard-header > div:first-child h1 {
+    margin: 0;
+
+    color: #f8fafc;
+
+    font-size: 22px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    letter-spacing: -0.2px;
+}
+
+
+/* SUBTITLE */
+
+.user-dashboard-header > div:first-child p {
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    font-weight: 400;
+}
+
+
+/* ============================================================
+   OPTIONAL EXPLICIT BRAND
+   ============================================================ */
+
+.user-dashboard-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+.user-dashboard-logo {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #1e7bf5;
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 22px rgba(30, 123, 245, 0.22);
+}
+
+.user-dashboard-title {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.user-dashboard-title h1 {
+    margin: 0;
+
+    font-size: 22px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    color: #f8fafc;
+}
+
+.user-dashboard-title p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   USER PROFILE
+   ============================================================ */
+
+.user-header-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    flex-shrink: 0;
+}
+
+.user-header-profile .user-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1e293b;
+    border: 1px solid #334155;
+
+    color: #f8fafc;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.user-header-profile > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.user-header-profile strong {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #f8fafc;
+}
+
+.user-header-profile span {
+    max-width: 200px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   LOGOUT BUTTON — RED
+   ============================================================ */
+
+.user-logout-button {
+    height: 36px;
+
+    margin-left: 12px;
+
+    padding: 0 16px;
+
+    background: #dc2626;
+    color: #ffffff;
+
+    border: 1px solid #ef4444;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+.user-logout-button:hover {
+    background: #b91c1c;
+    border-color: #dc2626;
+    color: #ffffff;
+}
+
+.user-logout-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.user-dashboard-content {
+    width: min(1180px, calc(100% - 48px));
+
+    margin: 0 auto;
+
+    padding: 32px 0 44px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+
+/* ============================================================
+   DASHBOARD CARDS
+   ============================================================ */
+
+.user-booking-card,
+.my-meetings-card {
+    width: 100%;
+    min-width: 0;
+
+    background: #111827;
+
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+
+.user-card-header {
+    min-height: 86px;
+
+    padding: 20px 22px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    border-bottom: 1px solid #1e293b;
+}
+
+.user-card-label {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    color: #60a5fa;
+}
+
+.user-card-label::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #1e7bf5;
+}
+
+.user-card-header h2 {
+    margin: 0;
+
+    font-size: 21px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    color: #f8fafc;
+}
+
+.user-card-header p {
+    margin: 6px 0 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   MEETING CARD ICON
+   ============================================================ */
+
+.meeting-card-icon {
+    width: 36px;
+    height: 36px;
+
+    margin-bottom: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(30, 123, 245, 0.12);
+
+    border: 1px solid rgba(30, 123, 245, 0.18);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   MEETING FORM
+   ============================================================ */
+
+.meeting-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 22px;
+}
+
+.meeting-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.meeting-field label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #cbd5e1;
+}
+
+.meeting-field input,
+.meeting-field select {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    background: #0f172a;
+    color: #f8fafc;
+
+    border: 1px solid #334155;
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.meeting-field input:hover,
+.meeting-field select:hover {
+    border-color: #475569;
+}
+
+.meeting-field input:focus,
+.meeting-field select:focus {
+    border-color: #1e7bf5;
+
+    box-shadow:
+        0 0 0 3px rgba(30, 123, 245, 0.10);
+}
+
+.meeting-field input[type="date"]::-webkit-calendar-picker-indicator,
+.meeting-field input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+
+    opacity: 0.85;
+
+    cursor: pointer;
+}
+
+.meeting-field select {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   CHECK AVAILABILITY
+   ============================================================ */
+
+.check-availability-button {
+    width: calc(100% - 44px);
+
+    height: 43px;
+
+    margin: 0 22px 22px;
+
+    padding: 0 17px;
+
+    background: #1e7bf5;
+
+    color: #ffffff;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.check-availability-button:hover:not(:disabled) {
+    background: #1768d4;
+}
+
+.check-availability-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.check-availability-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   AVAILABILITY RESULT
+   ============================================================ */
+
+.availability-result {
+    margin: 0 22px 22px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    background: #0f172a;
+
+    border: 1px solid #334155;
+
+    border-radius: 8px;
+}
+
+.availability-result.available {
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.availability-result.unavailable {
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.availability-icon {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: rgba(30, 123, 245, 0.12);
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.availability-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.availability-content > strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #f8fafc;
+}
+
+.availability-content > p {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    color: #94a3b8;
+}
+
+
+/* ============================================================
+   AVAILABLE SLOT
+   ============================================================ */
+
+.available-slot {
+    margin-top: 13px;
+
+    padding: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 7px;
+}
+
+.available-slot > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.available-slot span {
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    color: #64748b;
+}
+
+.available-slot strong {
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #f8fafc;
+}
+
+
+/* ============================================================
+   USE SLOT
+   ============================================================ */
+
+.use-slot-button {
+    height: 34px;
+
+    padding: 0 13px;
+
+    background: transparent;
+
+    color: #60a5fa;
+
+    border: 1px solid #1e7bf5;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.use-slot-button:hover {
+    background: #1e7bf5;
+
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   REQUEST MEETING
+   ============================================================ */
+
+.request-meeting-button {
+    width: calc(100% - 44px);
+
+    height: 43px;
+
+    margin: 0 22px 22px;
+
+    padding: 0 17px;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.request-meeting-button:hover:not(:disabled) {
+    background: #15803d;
+}
+
+.request-meeting-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.request-meeting-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   SUCCESS / ERROR
+   ============================================================ */
+
+.meeting-success,
+.meeting-error {
+    margin: 0 22px 22px;
+
+    padding: 12px 14px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+.meeting-success {
+    background: rgba(34, 197, 94, 0.08);
+
+    border: 1px solid rgba(34, 197, 94, 0.2);
+
+    color: #4ade80;
+}
+
+.meeting-error {
+    background: rgba(239, 68, 68, 0.08);
+
+    border: 1px solid rgba(239, 68, 68, 0.2);
+
+    color: #f87171;
+}
+
+
+/* ============================================================
+   REFRESH MEETINGS
+   ============================================================ */
+
+.refresh-meetings-button {
+    height: 34px;
+
+    padding: 0 13px;
+
+    background: #1e293b;
+
+    color: #cbd5e1;
+
+    border: 1px solid #334155;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.refresh-meetings-button:hover:not(:disabled) {
+    background: #263449;
+
+    border-color: #1e7bf5;
+
+    color: #60a5fa;
+}
+
+.refresh-meetings-button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   MY MEETINGS
+   ============================================================ */
+
+.meetings-list {
+    padding: 6px 22px 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.meeting-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px 2px;
+
+    border-bottom: 1px solid #1e293b;
+}
+
+.meeting-item:last-child {
+    border-bottom: none;
+}
+
+
+/* ============================================================
+   MEETING ITEM ICON
+   ============================================================ */
+
+.meeting-item-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(30, 123, 245, 0.10);
+
+    border: 1px solid rgba(30, 123, 245, 0.18);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+.meeting-item-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.meeting-item-content > strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #f8fafc;
+}
+
+.meeting-item-details {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px 15px;
+
+    font-size: 13px;
+
+    color: #94a3b8;
+}
+
+.meeting-item-details span {
+    color: #94a3b8;
+}
+
+.meeting-item-details span:not(:last-child)::after {
+    content: "•";
+
+    margin-left: 9px;
+
+    color: #475569;
+}
+
+
+/* ============================================================
+   MEETING STATUS
+   ============================================================ */
+
+.meeting-status {
+    padding: 6px 10px;
+
+    background: rgba(34, 197, 94, 0.08);
+
+    border: 1px solid rgba(34, 197, 94, 0.18);
+
+    border-radius: 20px;
+
+    color: #4ade80;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: capitalize;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   EMPTY MEETINGS
+   ============================================================ */
+
+.meetings-empty {
+    min-height: 230px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    text-align: center;
+}
+
+.meetings-empty-icon {
+    width: 46px;
+    height: 46px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(30, 123, 245, 0.10);
+
+    border: 1px solid rgba(30, 123, 245, 0.18);
+
+    border-radius: 9px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+}
+
+.meetings-empty strong {
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #cbd5e1;
+}
+
+.meetings-empty span {
+    font-size: 13px;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .user-dashboard-content {
+        grid-template-columns: 1fr;
+
+        width: min(720px, calc(100% - 36px));
+
+        padding: 25px 0 35px;
+    }
+
+    .user-dashboard-header {
+        padding: 15px 24px;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .user-dashboard-header {
+        min-height: auto;
+
+        padding: 14px 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+    .user-dashboard-header > div:first-child {
+        width: 100%;
+    }
+
+    .user-header-profile {
+        width: 100%;
+    }
+
+    .user-logout-button {
+        margin-left: auto;
+    }
+
+    .user-dashboard-content {
+        width: calc(100% - 28px);
+
+        padding: 18px 0 28px;
+
+        gap: 16px;
+    }
+
+    .user-card-header {
+        padding: 18px;
+    }
+
+    .user-card-header h2 {
+        font-size: 20px;
+    }
+
+    .user-card-header p {
+        font-size: 13px;
+    }
+
+    .meeting-form {
+        padding: 18px;
+    }
+
+    .meeting-field label {
+        font-size: 13px;
+    }
+
+    .meeting-field input,
+    .meeting-field select {
+        height: 43px;
+        font-size: 14px;
+    }
+
+    .available-slot {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .use-slot-button {
+        width: 100%;
+    }
+
+    .meeting-item {
+        align-items: flex-start;
+    }
+
+    .meeting-status {
+        align-self: flex-start;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    .user-dashboard-header {
+        padding: 13px 14px;
+    }
+
+    .user-dashboard-header > div:first-child {
+        gap: 10px;
+    }
+
+    .user-dashboard-header > div:first-child::before,
+    .user-dashboard-logo {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 9px;
+
+        font-size: 19px;
+    }
+
+    .user-dashboard-header > div:first-child h1,
+    .user-dashboard-title h1 {
+        font-size: 18px;
+    }
+
+    .user-dashboard-header > div:first-child p,
+    .user-dashboard-title p {
+        font-size: 11px;
+    }
+
+    .user-header-profile span {
+        max-width: 160px;
+    }
+
+    .user-logout-button {
+        height: 34px;
+
+        padding: 0 12px;
+
+        font-size: 12px;
+    }
+
+    .user-card-header h2 {
+        font-size: 19px;
+    }
+
+    .user-card-header p {
+        font-size: 12px;
+    }
+
+    .meeting-field label {
+        font-size: 13px;
+    }
+
+    .meeting-field input,
+    .meeting-field select {
+        font-size: 14px;
+    }
+
+    .check-availability-button,
+    .request-meeting-button {
+        font-size: 13px;
+    }
+
+    .meeting-item-content > strong {
+        font-size: 14px;
+    }
+
+    .meeting-item-details {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 3px;
+
+        font-size: 12px;
+    }
+
+    .meeting-item-details span:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* ============================================================
+   ADMIN MEETING REQUESTS
+   Matches current App.jsx class names
+   ============================================================ */
+
+.meeting-requests-card {
+    width: 100%;
+    padding: 22px;
+    border-radius: 18px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* ------------------------------------------------------------
+   HEADER
+   ------------------------------------------------------------ */
+
+.meeting-requests-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meeting-requests-card .card-header > div:first-child {
+    min-width: 0;
+}
+
+.meeting-requests-card .card-header h3 {
+    margin: 0 0 5px;
+    color: #f9fafb;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.meeting-requests-card .card-header p {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   REFRESH BUTTON
+   ------------------------------------------------------------ */
+
+.meeting-requests-refresh {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+
+    background: #1f2937;
+    color: #d1d5db;
+
+    font-size: 17px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.meeting-requests-refresh:hover {
+    background: #273449;
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: rotate(30deg);
+}
+
+.meeting-requests-refresh:active {
+    transform: scale(0.94);
+}
+
+.meeting-requests-refresh:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ------------------------------------------------------------
+   REQUEST LIST
+   ------------------------------------------------------------ */
+
+.meeting-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ------------------------------------------------------------
+   REQUEST CARD
+   ------------------------------------------------------------ */
+
+.meeting-request-item {
+    width: 100%;
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background: #182131;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.meeting-request-item:hover {
+    background: #1c2738;
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------
+   TOP SECTION
+   ------------------------------------------------------------ */
+
+.meeting-request-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+/* ------------------------------------------------------------
+   USER
+   ------------------------------------------------------------ */
+
+.meeting-request-user {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.meeting-request-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.meeting-request-user > div:last-child {
+    min-width: 0;
+}
+
+.meeting-request-user strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #f9fafb;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.meeting-request-user span {
+    display: block;
+
+    color: #9ca3af;
+    font-size: 11px;
+    line-height: 1.4;
+
+    word-break: break-word;
+}
+
+/* ------------------------------------------------------------
+   STATUS
+   ------------------------------------------------------------ */
+
+.meeting-request-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.meeting-request-status.pending {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #fbbf24;
+}
+
+/* ------------------------------------------------------------
+   REQUEST DETAILS
+   ------------------------------------------------------------ */
+
+.meeting-request-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.meeting-request-details > div {
+    min-width: 0;
+
+    padding: 9px 10px;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.meeting-request-details span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #6b7280;
+    font-size: 9px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.meeting-request-details strong {
+    display: block;
+
+    color: #e5e7eb;
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* ------------------------------------------------------------
+   ADMIN MESSAGE
+   ------------------------------------------------------------ */
+
+.meeting-request-message {
+    margin-top: 10px;
+    padding: 9px 11px;
+
+    border-radius: 9px;
+
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.16);
+
+    color: #c7d2fe;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   ACTION BUTTONS
+   ------------------------------------------------------------ */
+
+.meeting-request-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.approve-meeting-button,
+.reject-meeting-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        opacity 0.2s ease;
+}
+
+/* APPROVE */
+
+.approve-meeting-button {
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+}
+
+.approve-meeting-button:hover {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.55);
+    transform: translateY(-1px);
+}
+
+/* REJECT */
+
+.reject-meeting-button {
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+.reject-meeting-button:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.55);
+    transform: translateY(-1px);
+}
+
+.approve-meeting-button:disabled,
+.reject-meeting-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ------------------------------------------------------------
+   ACTION MESSAGE
+   ------------------------------------------------------------ */
+
+.meeting-action-message {
+    margin-top: 12px;
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+
+    color: #86efac;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   LOADING
+   ------------------------------------------------------------ */
+
+.meeting-requests-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 150px;
+    padding: 25px 15px;
+
+    text-align: center;
+}
+
+/* ------------------------------------------------------------
+   EMPTY ICON
+   ------------------------------------------------------------ */
+
+.meeting-request-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+
+    font-size: 20px;
+}
+
+/* Empty state text */
+
+.meeting-requests-empty h3 {
+    margin: 0 0 5px;
+
+    color: #e5e7eb;
+    font-size: 14px;
+}
+
+.meeting-requests-empty p {
+    max-width: 300px;
+
+    margin: 0;
+
+    color: #6b7280;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   ADMIN DASHBOARD
+   ============================================================ */
+
+.admin-dashboard {
+    min-height: 100vh;
+    width: 100%;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(79, 70, 229, 0.08),
+            transparent 35%
+        ),
+        #0b0f17;
+
+    color: #ffffff;
+}
+
+.admin-dashboard-content {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 32px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .meeting-requests-card {
+        padding: 18px;
+    }
+
+    .meeting-request-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-dashboard-content {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .admin-dashboard-content {
+        padding: 15px;
+    }
+
+    .meeting-requests-card {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .meeting-requests-card .card-header {
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .meeting-requests-card .card-header h3 {
+        font-size: 16px;
+    }
+
+    .meeting-requests-card .card-header p {
+        font-size: 11px;
+    }
+
+    .meeting-requests-refresh {
+        width: 34px;
+        height: 34px;
+    }
+
+    .meeting-request-item {
+        padding: 13px;
+    }
+
+    .meeting-request-top {
+        align-items: flex-start;
+    }
+
+    .meeting-request-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .meeting-request-user strong {
+        font-size: 13px;
+    }
+
+    .meeting-request-user span {
+        font-size: 10px;
+    }
+
+    .meeting-request-status {
+        padding: 4px 7px;
+        font-size: 9px;
+    }
+
+    .meeting-request-details {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .meeting-request-details > div {
+        padding: 8px 9px;
+    }
+
+    .meeting-request-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .meeting-requests-card {
+        padding: 12px;
+    }
+
+    .meeting-request-item {
+        padding: 11px;
+    }
+
+    .meeting-request-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   USER MEETING CHAT
+   ============================================================ */
+
+.user-dashboard {
+    min-height: 100vh;
+    background: #0b0f14;
+    color: #f5f7fa;
+}
+
+.user-dashboard-header {
+    min-height: 86px;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: #10151c;
+}
+
+.user-dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-dashboard-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181f29;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 22px;
+}
+
+.user-dashboard-title h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.user-dashboard-title p {
+    margin: 5px 0 0;
+    color: #8993a2;
+    font-size: 13px;
+}
+
+.user-header-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-header-info strong {
+    font-size: 14px;
+}
+
+.user-header-info span {
+    color: #8993a2;
+    font-size: 12px;
+}
+
+.user-logout-button {
+    margin-left: 12px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #171d25;
+    color: #dce2e9;
+    cursor: pointer;
+}
+
+.user-logout-button:hover {
+    background: #202833;
+}
+
+
+/* ============================================================
+   USER CONTENT
+   ============================================================ */
+
+.user-dashboard-content {
+    width: min(1050px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 36px 0 60px;
+    display: grid;
+    gap: 24px;
+}
+
+
+/* ============================================================
+   MEETING CHAT CARD
+   ============================================================ */
+
+.user-meeting-chat-card {
+    background: #111720;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+}
+
+.user-meeting-chat-header {
+    padding: 26px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.user-card-label {
+    color: #8d99a8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.user-meeting-chat-header h2 {
+    margin: 8px 0 6px;
+    font-size: 24px;
+}
+
+.user-meeting-chat-header p {
+    margin: 0;
+    color: #8f99a8;
+    font-size: 14px;
+}
+
+.meeting-chat-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(70, 190, 120, 0.08);
+    border: 1px solid rgba(70, 190, 120, 0.18);
+    color: #8bd3a9;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.meeting-chat-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #45c17a;
+}
+
+
+/* ============================================================
+   CHAT MESSAGES
+   ============================================================ */
+
+.user-meeting-chat-messages {
+    min-height: 400px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.meeting-chat-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.meeting-chat-user-row {
+    justify-content: flex-end;
+}
+
+.meeting-chat-assistant-row {
+    justify-content: flex-start;
+}
+
+.meeting-chat-avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1b222d;
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px;
+}
+
+.meeting-chat-bubble {
+    max-width: 72%;
+    padding: 13px 16px;
+    border-radius: 14px;
+    line-height: 1.55;
+    font-size: 14px;
+    white-space: normal;
+}
+
+.meeting-chat-assistant-bubble {
+    background: #181f28;
+    border: 1px solid rgba(255,255,255,0.07);
+    color: #e7ebf0;
+    border-bottom-left-radius: 4px;
+}
+
+.meeting-chat-user-bubble {
+    background: #2a3442;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+
+/* ============================================================
+   QUICK SUGGESTIONS
+   ============================================================ */
+
+.meeting-chat-suggestions {
+    padding: 0 28px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.meeting-chat-suggestions button {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.09);
+    background: #151c25;
+    color: #aeb7c3;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.meeting-chat-suggestions button:hover {
+    background: #1d2631;
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   CHAT INPUT
+   ============================================================ */
+
+.user-meeting-chat-input-area {
+    padding: 18px 22px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background: #0e141b;
+}
+
+.user-meeting-chat-input-area input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.09);
+    outline: none;
+    background: #171e27;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.user-meeting-chat-input-area input::placeholder {
+    color: #6f7a88;
+}
+
+.user-meeting-chat-input-area input:focus {
+    border-color: rgba(255,255,255,0.2);
+}
+
+.user-meeting-chat-input-area button {
+    width: 46px;
+    border: none;
+    border-radius: 10px;
+    background: #e9edf2;
+    color: #10151c;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.user-meeting-chat-input-area button:hover {
+    background: #ffffff;
+}
+
+.user-meeting-chat-input-area button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   MY MEETINGS
+   ============================================================ */
+
+.my-meetings-card {
+    background: #111720;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 26px 28px;
+}
+
+.my-meetings-card .user-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.my-meetings-card .user-card-header h2 {
+    margin: 8px 0 5px;
+    font-size: 22px;
+}
+
+.my-meetings-card .user-card-header p {
+    margin: 0;
+    color: #8993a2;
+    font-size: 13px;
+}
+
+.refresh-meetings-button {
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #171e27;
+    color: #dce2e9;
+    cursor: pointer;
+}
+
+.refresh-meetings-button:hover {
+    background: #202934;
+}
+
+
+/* ============================================================
+   MEETING LIST
+   ============================================================ */
+
+.meetings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meeting-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #151c25;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.meeting-item-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #1d2631;
+}
+
+.meeting-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.meeting-item-content > strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.meeting-item-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: #8993a2;
+    font-size: 12px;
+}
+
+.meeting-admin-message {
+    margin-top: 9px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.04);
+    color: #b8c0ca;
+    font-size: 12px;
+}
+
+.meeting-status {
+    flex-shrink: 0;
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.meeting-status.pending {
+    background: rgba(230,170,60,0.1);
+    color: #e8bd6b;
+}
+
+.meeting-status.approved {
+    background: rgba(70,190,120,0.1);
+    color: #7fd3a1;
+}
+
+.meeting-status.rejected {
+    background: rgba(220,80,80,0.1);
+    color: #ed8585;
+}
+
+
+/* ============================================================
+   EMPTY / ERROR
+   ============================================================ */
+
+.meetings-empty {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #7e8997;
+    text-align: center;
+}
+
+.meetings-empty strong {
+    color: #cbd2da;
+}
+
+.meetings-empty-icon {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.meeting-error {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 9px;
+    background: rgba(220,80,80,0.08);
+    border: 1px solid rgba(220,80,80,0.15);
+    color: #ee9191;
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .user-dashboard-header {
+        padding: 16px;
+    }
+
+    .user-header-info {
+        display: none;
+    }
+
+    .user-dashboard-content {
+        width: calc(100% - 24px);
+        padding: 18px 0 40px;
+    }
+
+    .user-meeting-chat-header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .user-meeting-chat-messages {
+        min-height: 360px;
+        padding: 20px;
+    }
+
+    .meeting-chat-bubble {
+        max-width: 85%;
+    }
+
+    .meeting-chat-suggestions {
+        padding: 0 20px 15px;
+    }
+
+    .my-meetings-card {
+        padding: 20px;
+    }
+
+    .my-meetings-card .user-card-header {
+        flex-direction: column;
+    }
+
+    .meeting-item {
+        align-items: flex-start;
+    }
+
+    .meeting-status {
+        margin-left: auto;
+    }
+
+    .meeting-item-details {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+.user-logout-button {
+  background: #dc2626;
+  color: #ffffff;
+  border: 1px solid #ef4444;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-logout-button:hover {
+  background: #b91c1c;
+  border-color: #dc2626;
+}
+
+.user-logout-button:active {
+  background: #991b1b;
+}
